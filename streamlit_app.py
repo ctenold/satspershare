@@ -61,3 +61,6 @@ components.html(html_code, height=350)
 #     "Author: [ColeTenold](www.x.com/coletenold)"
 # )
 badge(type="twitter", name="ColeTenold")
+
+button = '''<a href="www.satspershare.streamlit.app" class="twitter-share-button" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>'''
+components.html(button)
