@@ -20,7 +20,7 @@ html_code = """
 stock_symbols = ["MSTR: Microstrategy", "3350.T: Metaplanet", "SMLR: Semler Scientific, Inc."]#, "AMZN", "TSLA"]
 treasury_urls = {"MSTR": "https://bitcointreasuries.net/entities/1", "3350.T":"https://bitcointreasuries.net/entities/176", "SMLR": "https://bitcointreasuries.net/entities/194"}
 # Streamlit app
-st.title("Sats Per Share App")
+st.title("SatsPerShare.streamlit.app")
 
 
 # Create a dropdown menu with the list of stock symbols
@@ -37,11 +37,17 @@ if st.button("Get Quote"):
   # Plot the stock price
   fig = px.line(stock_data, x='Date', y='Close', title=f'{symbol} Daily Stock Price (Last 5 Years)', labels={'Close':'Stock Price (USD)'})
   fig.update_layout(height=600)
-
+  fig.add_annotation(
+    text="SatsPerShare.streamlit.app",
+    xref="paper", yref="paper",
+    x=0.5, y=0.05,  # x, y coordinates on the plotting area, x=0.5 is center horizontally, y=0 is bottom
+    xanchor='center', yanchor='top',
+    showarrow=False,
+    font=dict(size=14))
   st.plotly_chart(fig,use_container_width=True,height=800)
   # Display the plot in Streamlit
   # st.plotly_chart(fig)
-  st.write("Sources:" , treasury_urls[symbol])
+  # st.write("Sources:" , treasury_urls[symbol])
   # st.success("Done")
 
 # Display the custom widget
