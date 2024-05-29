@@ -36,12 +36,14 @@ if st.button("Get Quote"):
 
   # Plot the stock price
   fig = px.line(stock_data, x='Date', y='Close', title=f'{symbol} Daily Stock Price (Last 5 Years)', labels={'Close':'Stock Price (USD)'})
+  fig.update_layout(height=600)
 
+  st.plotly_chart(fig,use_container_width=True,height=800)
   # Display the plot in Streamlit
-  st.plotly_chart(fig)
+  # st.plotly_chart(fig)
   st.write("Sources:" , treasury_urls[symbol])
   # st.success("Done")
 
 # Display the custom widget
-components.html(html_code, height=325)
+components.html(html_code, height=350)
 st.write("www.x.com/coletenold")
