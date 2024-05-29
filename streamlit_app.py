@@ -43,5 +43,5 @@ if st.button("Get Quote"):
   # st.success("Done")
 
 # Display the custom widget
-components.html(html_code, height=600)
+components.html(html_code, height=325)
 st.write("www.x.com/coletenold")
