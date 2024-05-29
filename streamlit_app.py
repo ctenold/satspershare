@@ -7,7 +7,7 @@ import plotly.express as px
 html_code = """
 <lightning-widget
     name="Support Value For Value"
-    accent="#ffffff"
+    accent="#0E1117"
     to="ctenold@strike.me"
     image="https://flyclipart.com/thumb2/bitcoin-logos-brands-and-logotypes-553473.png"
     amounts="1000,5000,10000"
@@ -20,13 +20,13 @@ html_code = """
 stock_symbols = ["MSTR: Microstrategy", "3350.T: Metaplanet", "SMLR: Semler Scientific, Inc."]#, "AMZN", "TSLA"]
 treasury_urls = {"MSTR": "https://bitcointreasuries.net/entities/1", "3350.T":"https://bitcointreasuries.net/entities/176", "SMLR": "https://bitcointreasuries.net/entities/194"}
 # Streamlit app
-st.title("Stocks App")
+st.title("Sats Per Share App")
 
 
 # Create a dropdown menu with the list of stock symbols
 symbol = st.selectbox("Select a stock symbol", stock_symbols).split(':')[0]
 if st.button("Get Quote"):
-  st.write(treasury_urls[symbol])
+  # st.write(treasury_urls[symbol])
   # st.json(yf.Ticker(symbol).info)
   # Fetch the stock data for the last 5 years
   stock_data = yf.download(symbol, period="5y")
@@ -39,7 +39,9 @@ if st.button("Get Quote"):
 
   # Display the plot in Streamlit
   st.plotly_chart(fig)
+  st.write("Sources:" , treasury_urls[symbol])
   # st.success("Done")
 
 # Display the custom widget
 components.html(html_code, height=600)
+st.write("www.x.com/coletenold")
