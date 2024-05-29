@@ -42,7 +42,7 @@ if st.button("Get Data"):
     fig = px.line(stock_data, x='Date', y='Close', title=f'{symbol} Daily Stock Price (Last 5 Years)', labels={'Close':f"Stock Price ({company_data[symbol]['Currency']})"})
     fig.update_layout(height=600)
     fig.add_annotation(
-      text="SatsPerShare.streamlit.app",
+      text="What should my domain be?",
       xref="paper", yref="paper",
       x=0.5, y=0.05,  # x, y coordinates on the plotting area, x=0.5 is center horizontally, y=0 is bottom
       xanchor='center', yanchor='top',
