@@ -1,6 +1,8 @@
 import streamlit as st
 import yfinance as yf
 from streamlit_extras.chart_container import chart_container
+import streamlit.components.v1 as components
+from streamlit_extras.badges import badge
 import plotly.express as px
 
 # Define the HTML for the JavaScript widget
@@ -18,14 +20,14 @@ html_code = """
 """
 
 stock_symbols = ["MSTR: Microstrategy", "3350.T: Metaplanet", "SMLR: Semler Scientific, Inc."]#, "AMZN", "TSLA"]
-treasury_urls = {"MSTR": "https://bitcointreasuries.net/entities/1", "3350.T":"https://bitcointreasuries.net/entities/176", "SMLR": "https://bitcointreasuries.net/entities/194"}
+company_data = {"MSTR": {"URL":"https://bitcointreasuries.net/entities/1", "Currency" : "USD"}, "3350.T":{"URL":"https://bitcointreasuries.net/entities/176", "Currency" : "Yen"}, "SMLR": {"URL" : "https://bitcointreasuries.net/entities/194", "Currency" : "USD"}}
 # Streamlit app
-st.title("SatsPerShare")
+st.title("Public Company Bitcoin Holdings")
 
 
 # Create a dropdown menu with the list of stock symbols
 symbol = st.selectbox("Select a stock symbol", stock_symbols).split(':')[0]
-if st.button("Get Quote"):
+if st.button("Get Data"):
   # st.write(treasury_urls[symbol])
   # st.json(yf.Ticker(symbol).info)
   # Fetch the stock data for the last 5 years
@@ -37,7 +39,7 @@ if st.button("Get Quote"):
     # st.write("Here's a cool chart")
     # st.area_chart(chart_data)
   # Plot the stock price
-    fig = px.line(stock_data, x='Date', y='Close', title=f'{symbol} Daily Stock Price (Last 5 Years)', labels={'Close':'Stock Price (USD)'})
+    fig = px.line(stock_data, x='Date', y='Close', title=f'{symbol} Daily Stock Price (Last 5 Years)', labels={'Close':f"Stock Price ({company_data[symbol]['Currency']})"})
     fig.update_layout(height=600)
     fig.add_annotation(
       text="SatsPerShare.streamlit.app",
@@ -53,8 +55,9 @@ if st.button("Get Quote"):
   # st.success("Done")
 
 # Display the custom widget
-# components.html(html_code, height=350)
+components.html(html_code, height=350)
 # st.write("Author: www.x.com/coletenold")
-st.markdown(
-    "Author: [ColeTenold](www.x.com/coletenold)"
-)
+# st.markdown(
+#     "Author: [ColeTenold](www.x.com/coletenold)"
+# )
+badge(type="twitter", name="ColeTenold")
